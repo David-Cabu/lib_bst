@@ -1,3 +1,5 @@
+
+
 #include <iostream>
 using namespace std;
 
@@ -12,8 +14,7 @@ private:
     Node* rchild;
 
 public:
-    Node(int* ptr) :
-        data{ 0 }, weight{ 1 }, lchild{ nullptr }, rchild{ nullptr } {};
+
     Node(int k) :
         data{ k }, weight{ 1 }, lchild{ nullptr }, rchild{ nullptr } {};
     ~Node() {};
@@ -23,23 +24,47 @@ public:
         lchild = s.lchild;
         rchild = s.rchild;
     }
-    int getData() {
-        return data;
+
+    Node* insertR(int k) {
+        Node* temp_root{ this };
+        Node* root{ this };
+        while (root != NULL)
+        {
+            temp_root = root;
+            if (k < root->data)
+            {
+                root = root->lchild;
+            }
+            else if (k > root->data)
+            {
+                root = root->rchild;
+            }
+            else if (k == root->data)
+            {
+                weight++;
+                return temp_root;
+            }
+        }
+        if (k > temp_root->data)
+        {
+            temp_root->rchild = new Node{ k };
+        }
+        else
+        {
+            temp_root->lchild = new Node{ k };
+        }
+        return this;
     }
-    Node* getLchild() {
-        return lchild;
-    }
-    Node* getRchild() {
-        return rchild;
-    }
-    void setWeight() {
-        weight += 1;
-    }
-    void setLchild(Node* parameter_lchild) {
-        lchild = parameter_lchild;
-    }
-    void setRchild(Node* parameter_rchild) {
-        rchild = parameter_rchild;
+    void inorder_traversal() {
+        Node* root{ this };
+        if (root == nullptr) {
+            return;
+        }
+        Node* lRoot{ root->lchild };
+        lRoot->inorder_traversal();
+        cout << root->data << " ";
+        Node* rRoot{ root->rchild };
+        rRoot->inorder_traversal();
     }
 };
 
@@ -52,30 +77,6 @@ int old_node_value{ 0 };
 char LorR_child{ ' ' };
 
 
-Node* insertR(Node* root,int k) {
-    Node* ptr_root{ root };
-    while (root != NULL)
-    {
-        if (k < root->getData())
-        {
-            root = root->getLchild();
-            continue;
-        }
-        else if (k > root->getData())
-        {
-            root = root->getRchild();
-            continue;
-        }
-        else if (k == root->getData())
-        {
-            root->setWeight();
-            return ptr_root;
-        }
-    }
-    root = new Node(k);
-
-    return ptr_root;
-}
 
 
 ////funzione per creare un nuovo nodo
