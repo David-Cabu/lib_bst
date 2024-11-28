@@ -1,5 +1,3 @@
-
-
 #include <iostream>
 using namespace std;
 
@@ -55,17 +53,41 @@ public:
         }
         return this;
     }
-    void inorder_traversal() {
+
+
+    void inOrder() {
         Node* root{ this };
         if (root == nullptr) {
             return;
         }
         Node* lRoot{ root->lchild };
-        lRoot->inorder_traversal();
+        lRoot->inOrder();
         cout << root->data << " ";
         Node* rRoot{ root->rchild };
-        rRoot->inorder_traversal();
+        rRoot->inOrder();
     }
+
+    Node* insertR(int k) {              // inserimento ricorsivo di k
+        Node* temp_root{ this };
+        if (temp_root == NULL)
+        {
+            temp_root = new Node{ k };
+            return temp_root;
+        }
+        if (k < temp_root->data)
+        {
+            temp_root->lchild = this->lchild->insertR(k);
+        }
+        else if (k > temp_root->data)
+        {
+            temp_root->rchild = this->rchild->insertR(k);
+        }
+        else if (k == temp_root->data)
+        {
+            temp_root->weight++;
+        }
+        return this;
+    };  
 };
 
 
