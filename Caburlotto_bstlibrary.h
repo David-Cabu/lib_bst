@@ -23,7 +23,7 @@ public:
         rchild = s.rchild;
     }
 
-    Node* insertR(int k) {
+    Node* insertI(int k) {
         Node* temp_root{ this };
         Node* root{ this };
         while (root != NULL)
