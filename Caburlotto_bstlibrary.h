@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-//struttura node
+//class node
 
 class Node
 {
@@ -54,19 +54,6 @@ public:
         return this;
     }
 
-
-    void inOrder() {
-        Node* root{ this };
-        if (root == nullptr) {
-            return;
-        }
-        Node* lRoot{ root->lchild };
-        lRoot->inOrder();
-        cout << root->data << " ";
-        Node* rRoot{ root->rchild };
-        rRoot->inOrder();
-    }
-
     Node* insertR(int k) {              // inserimento ricorsivo di k
         Node* temp_root{ this };
         if (temp_root == NULL)
@@ -88,15 +75,66 @@ public:
         }
         return this;
     };  
+
+    void inOrder() {
+        Node* root{ this };
+        if (root == nullptr) {
+            return;
+        }
+        Node* lRoot{ root->lchild };
+        lRoot->inOrder();
+        cout << root->data << " ";
+        Node* rRoot{ root->rchild };
+        rRoot->inOrder();
+    }
+
+    bool searchI(int k) {
+        Node* Root{ this };
+        while (Root!=NULL)
+        {
+            if (Root->data == k)
+            {
+                return true;
+            }
+            else if (Root->data <= k)
+            {
+                Root = Root->rchild;
+                continue;
+            }
+            else if (Root->data>=k)
+            {
+                Root = Root->lchild;
+                continue;
+            }
+        }
+        return false;
+    }
+
+    bool searchR(int k) {
+        Node* root{ this };
+        if (root == NULL)
+        {
+            return false;
+        }
+        else if (root->data==k)
+        {
+            return true;
+        }
+        else if (root->data<k)
+        {
+            root = root->rchild;
+            return root->searchR(k);
+        }
+        else if (root->data>k)
+        {
+            root=root->lchild;
+            return root->searchR(k);
+        }
+    }
 };
 
 
 
-
-
-//variabili globali per le varie funzioni
-int old_node_value{ 0 };
-char LorR_child{ ' ' };
 
 
 
