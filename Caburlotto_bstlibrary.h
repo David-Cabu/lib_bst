@@ -183,6 +183,40 @@ public:
         return this;
     }
 
+
+
+    bool isBst() {
+        if (this->lchild!=NULL)
+        {
+            if (this->lchild->data<this->data)
+            {
+                lchild->isBst();
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return true;
+        }
+        if (this->rchild!=NULL)
+        {
+            if (this->rchild->data > this->data)
+            {
+                rchild->isBst();
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        else {
+            return true;
+        }
+    }
 };
 
 
@@ -234,40 +268,4 @@ public:
 //    int l = bst_height(root->lchild);
 //    int r = bst_height(root->rchild);
 //    return max(l, r) + 1;
-//}
-//
-//
-////funzione per verificare se l'albero e' un bst
-//bool verify_bst(node* root) {
-//    if (root->lchild != NULL)
-//    {
-//        if (root->lchild->value < root->value)
-//        {
-//            verify_bst(root->lchild);
-//        }
-//        else
-//        {
-//            return false;
-//        }
-//    }
-//    else
-//    {
-//        return true;
-//    }
-//    if (root->rchild != NULL)
-//    {
-//        if (root->rchild->value > root->value)
-//        {
-//            verify_bst(root->rchild);
-//        }
-//        else
-//        {
-//            return false;
-//        }
-//    }
-//    else
-//    {
-//        return true;
-//    }
-//    return true;
 //}
