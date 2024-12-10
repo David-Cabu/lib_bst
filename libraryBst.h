@@ -6,6 +6,7 @@ using namespace std;
 class Node
 {
 public:
+    Node() {};
     Node(int k) :
         data{ k }, weight{ 1 }, lchild{ nullptr }, rchild{ nullptr } {};
     ~Node() {};
@@ -33,6 +34,12 @@ public:
     void preOrder();
 
     void postOrder();
+
+    friend ostream& operator<<(ostream& os, Node& root);
+
+    friend istream& operator>>(istream& is, Node& root);
+
+    int getData();
 
 
 private:

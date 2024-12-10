@@ -211,3 +211,37 @@ void Node::postOrder() {
     rchild->postOrder();
     cout << data << " ";
 }
+
+ostream& operator<<(ostream& os, Node& root) {
+    os << "Node data: " << root.getData() << endl;
+    if (root.lchild == nullptr)
+    {
+        os << "Left child: NULL" << endl;
+    }
+    else
+    {
+        os << "Left child: " << root.lchild->getData() << endl;
+    }
+    if (root.rchild == nullptr)
+    {
+        os << "Right child: NULL" << endl;
+    }
+    else
+    {
+        os << "Right child: " << root.rchild->getData() << endl;
+    }
+    return os;
+}
+
+istream& operator>>(istream& is, Node& root) {
+    cout << "Insert the node's value: ";
+    is >> root.data;
+    cout << "Insert the weigth's value: ";
+    is >> root.weight;
+    return is;
+}
+
+
+int Node::getData() {
+    return data;
+}
